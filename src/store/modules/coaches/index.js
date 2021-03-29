@@ -24,7 +24,7 @@ export default {
   mutations: {},
   actions: {},
   getters: {
-      coaches: state => state,
-      hasCoaches: state => state && state.length >   0
+    coaches: state => state,
+    hasCoaches: state => state && state.length > 0
   }
 };
