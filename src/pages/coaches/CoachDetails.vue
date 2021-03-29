@@ -1,5 +1,6 @@
 <template>
-  <section>
+  <div v-if="coachExists">
+      <section>
     <base-card>
       <h2>{{ fullName }}</h2>
       <h3>$ {{ rate }}/hour</h3>
@@ -25,6 +26,8 @@
       <p>{{ description }}</p>
     </base-card>
   </section>
+  </div>
+  <base-card v-else><h3>Coach id does not exist!</h3></base-card>
 </template>
 
 <script>
@@ -33,7 +36,7 @@ export default {
     computed: {
         contactLink(){
             return {
-                name: 'coachDetails',
+                name: 'coachContact',
                 params: {
                     id: this.id
                 }
@@ -42,17 +45,29 @@ export default {
         fullName(){
             return `${this.coach.firstName} ${this.coach.lastName}`
         },
-        coachExists(){
-            return this.coach && this.coach.length > 0
+        rate(){
+            return this.coach.hourlyRate;
         },
+        areas(){
+            return this.coach.areas;
+        },
+        description(){
+            return this.coach.description
+        }
     },
     data(){
         return {
             coach: null,
+            coachExists: false,
         }
     },
     created(){
-        this.coach = this.$store.getters.coaches.find(c => c.id == this.id)
+        this.coach = this.$store.getters.coaches.find(c => {
+            if(c.id == this.id){
+                this.coachExists = true
+            }
+            return c.id == this.id;
+        })
     }
 }
 </script>
