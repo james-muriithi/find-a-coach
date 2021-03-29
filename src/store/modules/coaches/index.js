@@ -25,6 +25,6 @@ export default {
   actions: {},
   getters: {
       coaches: state => state,
-      hasCoaches: state => state && state.length > 0
+      hasCoaches: state => state && state.length >   0
   }
 };
