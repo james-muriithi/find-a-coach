@@ -11,7 +11,7 @@
       ></base-badge>
     </div>
     <div class="actions">
-      <base-button mode="outline" :to="coachContactLink">Contact</base-button>
+      <base-button mode="outline" :link="true" :to="coachContactLink">Contact</base-button>
       <base-button :link="true" :to="coachDetailsLink"
         >View Details</base-button
       >

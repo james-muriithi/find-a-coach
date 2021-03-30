@@ -1,11 +1,11 @@
 <template>
-  <form action="">
+  <form @submit.prevent="submitForm">
     <div class="form-control" :class="{invalid : !email.isValid}">
       <label for="email">Your Email</label>
       <input type="email" id="email" v-model.trim="email.val" />
       <p v-if="!email.isValid">Plaese provide a valid email</p>
     </div>
-    <div class="form-control">
+    <div class="form-control" :class="{invalid : !message.isValid}">
       <label for="message" :class="{invalid : !message.isValid}">Message</label>
       <textarea id="message" rows="4" v-model="message.val"></textarea>
       <p v-if="!message.isValid">Message cannot be empty</p>
@@ -33,6 +33,7 @@ export default {
   },
   methods: {
       validateForm(){
+          this.formIsValid = true;
           if(this.email.val == '' || !this.email.val.includes('@')){
             this.email.isValid = this.formIsValid = false;
           }
@@ -41,11 +42,19 @@ export default {
           }
       },
       submitForm(){
-          this.formIsValid = true;
+          this.validateForm();
+
           if(!this.formIsValid){
               return;
           }
 
+          this.$store.dispatch('addRequest', {
+              email: this.email,
+              message: this.message,
+              coachId: this.$route.id
+          });
+
+          this.$router.replace('/coaches')
       }
   }
 };
@@ -75,7 +84,7 @@ textarea {
   width: 100%;
   font: inherit;
   border: 1px solid #ccc;
-  padding: 0.15rem;
+  padding: 7px;
 }
 
 input:focus,
