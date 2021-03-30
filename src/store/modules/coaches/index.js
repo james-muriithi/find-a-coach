@@ -21,10 +21,33 @@ export default {
       }
     ];
   },
-  mutations: {},
-  actions: {},
+  mutations: {
+    addCoach(state, payload) {
+      state.push(payload);
+    }
+  },
+  actions: {
+    addCoach(context, data) {
+      const coachData = {
+        id: context.rootGetters.userId,
+        firstName: data.first,
+        lastName: data.last,
+        hourlyRate: data.rate,
+        description: data.desc,
+        areas: data.areas
+      };
+
+      context.commit('addCoach', coachData);
+    }
+  },
   getters: {
     coaches: state => state,
-    hasCoaches: state => state && state.length > 0
+    hasCoaches: state => state && state.length > 0,
+    isCoach: (_, getters, _2, rootGetters) => {
+      const coaches = getters.coaches,
+        userId = rootGetters.userId;
+
+      return coaches.some(coach => coach.id == userId);
+    }
   }
 };

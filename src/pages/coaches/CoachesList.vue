@@ -6,7 +6,7 @@
     <base-card>
       <div class="controls">
         <base-button mode="outline">refresh</base-button>
-        <base-button :link="true" to="/register"
+        <base-button v-if="!isCoach" :link="true" to="/register"
           >Register as a coach</base-button
         >
       </div>
@@ -46,7 +46,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({ hasCoaches: 'hasCoaches' }),
+    ...mapGetters({ hasCoaches: 'hasCoaches', isCoach: 'isCoach' }),
     filteredCoaches() {
       const coaches = this.$store.getters.coaches;
       return coaches.filter((coach) => {
