@@ -5,7 +5,7 @@
   <section>
     <base-card>
       <div class="controls">
-        <base-button mode="outline">refresh</base-button>
+        <base-button mode="outline" @click="loadCoaches">refresh</base-button>
         <base-button v-if="!isCoach" :link="true" to="/register"
           >Register as a coach</base-button
         >
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import CoachItem from '../../components/coaches/CoachItem.vue';
 import CoachFilter from '../../components/coaches/CoachFilter.vue';
 
@@ -67,7 +67,11 @@ export default {
     setFilters(updatedFilters) {
       this.activeFilters = updatedFilters;
     },
+    ...mapActions(['loadCoaches'])
   },
+  created(){
+    this.loadCoaches()
+  }
 };
 </script>
 

@@ -25,8 +25,8 @@ export default {
     requests(state, _, _2, rootGetters) {
       return state.requests.filter(req => req.coachId == rootGetters.userId);
     },
-    hasRequests(state, getters){
-        return getters.requests && state.requests.length > 0;
+    hasRequests(state, getters) {
+      return getters.requests && state.requests.length > 0;
     }
   }
 };
