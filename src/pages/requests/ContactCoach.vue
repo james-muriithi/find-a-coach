@@ -51,7 +51,7 @@ export default {
           this.$store.dispatch('addRequest', {
               email: this.email.val,
               message: this.message.val,
-              coachId: this.$route.id
+              coachId: this.$route.params.id
           });
 
           this.$router.replace('/coaches')

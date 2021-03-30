@@ -22,11 +22,11 @@ export default {
     }
   },
   getters: {
-    requests(state) {
-      return state.requests;
+    requests(state, _, _2, rootGetters) {
+      return state.requests.filter(req => req.coachId == rootGetters.userId);
     },
-    hasRequests(state){
-        return state.requests && state.requests.length > 0;
+    hasRequests(state, getters){
+        return getters.requests && state.requests.length > 0;
     }
   }
 };
