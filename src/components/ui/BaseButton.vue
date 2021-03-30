@@ -41,10 +41,13 @@ a {
 
 a:hover,
 a:active,
+a:focus,
 button:hover,
+button:focus,
 button:active {
   background-color: #270041;
   border-color: #270041;
+  outline: none;
 }
 
 .flat {
@@ -61,8 +64,11 @@ button:active {
 
 .flat:hover,
 .flat:active,
+.flat:focus,
 .outline:hover,
+.outline:focus,
 .outline:active {
   background-color: #edd2ff;
+  outline: none;
 }
 </style>
