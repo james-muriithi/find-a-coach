@@ -63,15 +63,15 @@ export default {
       });
     },
   },
+  created(){
+    this.loadCoaches()
+  },
   methods: {
     setFilters(updatedFilters) {
       this.activeFilters = updatedFilters;
     },
     ...mapActions(['loadCoaches'])
   },
-  created(){
-    this.loadCoaches()
-  }
 };
 </script>
 
