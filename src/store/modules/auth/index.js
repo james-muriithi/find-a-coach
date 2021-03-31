@@ -11,6 +11,11 @@ export default {
       (state.token = payload.token),
         (state.userId = payload.userId),
         (state.tokenExpiration = payload.tokenExpiration);
+    },
+    logout(state){
+        state.token = null;
+        state.userId = null;
+        state.tokenExpiration = null;
     }
   },
   actions: {
@@ -65,6 +70,9 @@ export default {
         userId: responseData.localId,
         tokenExpiration: responseData.expiresIn
       });
+    },
+    logout(context){
+        context.commit('logout');
     }
   },
   getters: {

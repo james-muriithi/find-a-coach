@@ -12,6 +12,9 @@
         <li v-else>
           <router-link to="/auth">Login</router-link>
         </li>
+        <li v-if="isAuthenticated">
+          <base-button @click="logout">Logout</base-button>
+        </li>
       </ul>
     </nav>
   </header>
@@ -19,10 +22,18 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import BaseButton from '../ui/BaseButton.vue'
 
 export default {
+  components: { BaseButton },
   computed: {
     ...mapGetters(['isAuthenticated'])
+  },
+  methods: {
+    logout(){
+      this.$store.dispatch('logout')
+      this.$router.push('/')
+    }
   }
 }
 </script>

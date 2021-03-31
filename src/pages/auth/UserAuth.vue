@@ -81,6 +81,8 @@ export default {
         } else {
           await this.$store.dispatch('signup', actionPayload);
         }
+        const redirectUrl = this.$route.query.redirect || '/';
+        this.$router.push(redirectUrl);
       } catch (error) {
         this.error = error;
       }
