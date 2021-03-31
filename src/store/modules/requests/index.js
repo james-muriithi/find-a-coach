@@ -22,7 +22,7 @@ export default {
       };
 
       await fetch(
-        'https://find-a-coach-69-default-rtdb.firebaseio.com/requests.json',
+        `https://find-a-coach-69-default-rtdb.firebaseio.com/requests/${data.coachId}.json`,
         {
           method: 'POST',
           body: JSON.stringify(newRequest)
@@ -32,8 +32,9 @@ export default {
       context.commit('addRequest', newRequest);
     },
     async loadRequests(context) {
+      const userId = context.rootGetters.userId;
       const response = await fetch(
-          'https://find-a-coach-69-default-rtdb.firebaseio.com/requests.json'
+          `https://find-a-coach-69-default-rtdb.firebaseio.com/requests/${userId}.json`
         ),
         responseData = await response.json();
 
