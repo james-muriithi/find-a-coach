@@ -13,11 +13,11 @@ import CoachForm from '../../components/coaches/CoachForm.vue';
 export default {
   data() {
     return {
-      error: null,
+      error: null
     };
   },
   components: {
-    CoachForm,
+    CoachForm
   },
   methods: {
     async saveData(data) {
@@ -27,7 +27,7 @@ export default {
         this.error = error.message || 'Something went wrong';
       }
       this.$router.replace('/coaches');
-    },
-  },
+    }
+  }
 };
 </script>

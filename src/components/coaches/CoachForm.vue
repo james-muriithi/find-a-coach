@@ -86,25 +86,25 @@ export default {
     return {
       firstName: {
         val: '',
-        isValid: true,
+        isValid: true
       },
       lastName: {
         val: '',
-        isValid: true,
+        isValid: true
       },
       description: {
         val: '',
-        isValid: true,
+        isValid: true
       },
       rate: {
         val: null,
-        isValid: true,
+        isValid: true
       },
       areas: {
         val: [],
-        isValid: true,
+        isValid: true
       },
-      formIsValid: true,
+      formIsValid: true
     };
   },
   methods: {
@@ -139,12 +139,12 @@ export default {
         last: this.lastName.val,
         desc: this.description.val,
         rate: this.rate.val,
-        areas: this.areas.val,
+        areas: this.areas.val
       };
 
       this.$emit('save-data', formData);
-    },
-  },
+    }
+  }
 };
 </script>
 

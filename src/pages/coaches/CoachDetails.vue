@@ -40,8 +40,8 @@ export default {
       return {
         name: 'coachContact',
         params: {
-          id: this.id,
-        },
+          id: this.id
+        }
       };
     },
     fullName() {
@@ -55,21 +55,21 @@ export default {
     },
     description() {
       return this.coach.description;
-    },
+    }
   },
   data() {
     return {
       coach: null,
-      coachExists: false,
+      coachExists: false
     };
   },
   created() {
-    this.coach = this.$store.getters.coaches.find((c) => {
+    this.coach = this.$store.getters.coaches.find(c => {
       if (c.id == this.id) {
         this.coachExists = true;
       }
       return c.id == this.id;
     });
-  },
+  }
 };
 </script>

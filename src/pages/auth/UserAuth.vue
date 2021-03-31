@@ -39,7 +39,7 @@ export default {
       formIsValid: true,
       mode: 'login',
       isLoading: false,
-      error: null,
+      error: null
     };
   },
   computed: {
@@ -56,7 +56,7 @@ export default {
       } else {
         return 'Login instead';
       }
-    },
+    }
   },
   methods: {
     async submitForm() {
@@ -72,7 +72,7 @@ export default {
       this.isLoading = true;
       const actionPayload = {
         email: this.email,
-        password: this.password,
+        password: this.password
       };
 
       try {
@@ -96,8 +96,8 @@ export default {
     },
     hadleError() {
       this.error = null;
-    },
-  },
+    }
+  }
 };
 </script>
 

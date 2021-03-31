@@ -25,12 +25,12 @@ export default {
       formIsValid: true,
       email: {
         val: '',
-        isValid: true,
+        isValid: true
       },
       message: {
         val: '',
-        isValid: true,
-      },
+        isValid: true
+      }
     };
   },
   methods: {
@@ -53,12 +53,12 @@ export default {
       this.$store.dispatch('addRequest', {
         email: this.email.val,
         message: this.message.val,
-        coachId: this.$route.params.id,
+        coachId: this.$route.params.id
       });
 
       this.$router.replace('/coaches');
-    },
-  },
+    }
+  }
 };
 </script>
 

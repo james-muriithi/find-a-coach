@@ -12,8 +12,8 @@ import TheHeader from './components/layout/TheHeader.vue';
 
 export default {
   components: {
-    TheHeader,
-  },
+    TheHeader
+  }
 };
 </script>
 
@@ -32,12 +32,12 @@ body {
   margin: 0;
 }
 
-.route-enter-from ,
+.route-enter-from,
 .route-leave-to {
   opacity: 0;
 }
 
-.route-enter-active ,
+.route-enter-active,
 .route-leave-active {
   transition: opacity 0.2s;
 }

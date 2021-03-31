@@ -11,7 +11,9 @@
       ></base-badge>
     </div>
     <div class="actions">
-      <base-button mode="outline" :link="true" :to="coachContactLink">Contact</base-button>
+      <base-button mode="outline" :link="true" :to="coachContactLink"
+        >Contact</base-button
+      >
       <base-button :link="true" :to="coachDetailsLink"
         >View Details</base-button
       >
@@ -29,16 +31,16 @@ export default {
     coachContactLink() {
       return {
         name: 'coachContact',
-        params: { id: this.id },
+        params: { id: this.id }
       };
     },
     coachDetailsLink() {
       return {
         name: 'coachDetails',
-        params: { id: this.id },
+        params: { id: this.id }
       };
-    },
-  },
+    }
+  }
 };
 </script>
 

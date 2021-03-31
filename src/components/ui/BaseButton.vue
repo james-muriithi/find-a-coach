@@ -13,14 +13,14 @@ export default {
     mode: {
       type: String,
       required: false,
-      default: null,
+      default: null
     },
     link: {
       type: Boolean,
       required: false,
-      default: false,
-    },
-  },
+      default: false
+    }
+  }
 };
 </script>
 
