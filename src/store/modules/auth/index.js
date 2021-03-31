@@ -10,7 +10,32 @@ export default {
     }
   },
   actions: {
-    login() {},
+    async login(context, payload) {
+      const key = 'AIzaSyD3FCV4Oly1ztwv6OaVDiBWB0Phh2pC_sw';
+      const response = await fetch(
+        `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${key}`,
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            email: payload.email,
+            password: payload.password,
+            returnSecureToken: true
+          })
+        }
+      );
+
+      const responseData = await response.json();
+
+      if (!response.ok) {
+        throw new Error(responseData.message || 'An error signing in');
+      }
+
+      context.commit('setUser', {
+        token: responseData.idToken,
+        userId: responseData.localId,
+        tokenExpiration: responseData.expiresIn
+      });
+    },
     async signup(context, payload) {
       const key = 'AIzaSyD3FCV4Oly1ztwv6OaVDiBWB0Phh2pC_sw';
       const response = await fetch(
@@ -31,8 +56,6 @@ export default {
         throw new Error(responseData.message || 'An error signing up');
       }
 
-      console.log(responseData);
-
       context.commit('setUser', {
         token: responseData.idToken,
         userId: responseData.localId,
@@ -40,5 +63,12 @@ export default {
       });
     }
   },
-  getters: {}
+  getters: {
+    userId(state) {
+      return state.userId;
+    },
+    token(state) {
+      return state.token;
+    }
+  }
 };
