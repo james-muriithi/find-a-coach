@@ -21,8 +21,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import BaseButton from '../ui/BaseButton.vue'
+import { mapGetters } from 'vuex';
+import BaseButton from '../ui/BaseButton.vue';
 
 export default {
   components: { BaseButton },
@@ -30,12 +30,12 @@ export default {
     ...mapGetters(['isAuthenticated'])
   },
   methods: {
-    logout(){
-      this.$store.dispatch('logout')
-      this.$router.push('/')
+    logout() {
+      this.$store.dispatch('logout');
+      this.$router.push('/');
     }
   }
-}
+};
 </script>
 
 <style scoped>

@@ -1,9 +1,9 @@
 export default {
   state() {
     return {
-        token: null,
-        userId: null,
-        tokenExpiration: null,
+      token: null,
+      userId: null,
+      tokenExpiration: null
     };
   },
   mutations: {
@@ -12,10 +12,10 @@ export default {
         (state.userId = payload.userId),
         (state.tokenExpiration = payload.tokenExpiration);
     },
-    logout(state){
-        state.token = null;
-        state.userId = null;
-        state.tokenExpiration = null;
+    logout(state) {
+      state.token = null;
+      state.userId = null;
+      state.tokenExpiration = null;
     }
   },
   actions: {
@@ -71,8 +71,8 @@ export default {
         tokenExpiration: responseData.expiresIn
       });
     },
-    logout(context){
-        context.commit('logout');
+    logout(context) {
+      context.commit('logout');
     }
   },
   getters: {
@@ -82,8 +82,8 @@ export default {
     token(state) {
       return state.token;
     },
-    isAuthenticated(state){
-        return !!state.token
+    isAuthenticated(state) {
+      return !!state.token;
     }
   }
 };

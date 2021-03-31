@@ -10,8 +10,16 @@
       <base-card>
         <div class="controls">
           <base-button mode="outline" @click="loadCoaches">Refresh</base-button>
-          <base-button v-if="!isLoggedIn" :link="true" to="/auth?redirect=register">Login to register as coach</base-button>
-          <base-button v-if="!isLoading && !isCoach && isLoggedIn" :link="true" to="/register"
+          <base-button
+            v-if="!isLoggedIn"
+            :link="true"
+            to="/auth?redirect=register"
+            >Login to register as coach</base-button
+          >
+          <base-button
+            v-if="!isLoading && !isCoach && isLoggedIn"
+            :link="true"
+            to="/register"
             >Register as a coach</base-button
           >
         </div>
@@ -57,7 +65,11 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({ hasCoaches: 'hasCoaches', isCoach: 'isCoach', isLoggedIn: 'isAuthenticated' }),
+    ...mapGetters({
+      hasCoaches: 'hasCoaches',
+      isCoach: 'isCoach',
+      isLoggedIn: 'isAuthenticated'
+    }),
     filteredCoaches() {
       const coaches = this.$store.getters.coaches;
       return coaches.filter(coach => {
