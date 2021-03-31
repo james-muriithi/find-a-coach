@@ -1,4 +1,7 @@
 <template>
+  <base-dialog :show="!!error" title="An error occured" @close="handleError">
+    <p>{{ error }}</p>
+  </base-dialog>
   <section>
     <coach-filter @change-filter="setFilters"></coach-filter>
   </section>
@@ -6,11 +9,14 @@
     <base-card>
       <div class="controls">
         <base-button mode="outline" @click="loadCoaches">refresh</base-button>
-        <base-button v-if="!isCoach" :link="true" to="/register"
+        <base-button v-if="!isLoading && !isCoach" :link="true" to="/register"
           >Register as a coach</base-button
         >
       </div>
-      <ul v-if="hasCoaches">
+      <div v-if="isLoading">
+        <base-spinner></base-spinner>
+      </div>
+      <ul v-if="!isLoading && hasCoaches">
         <coach-item
           v-for="coach in filteredCoaches"
           :key="coach.id"
@@ -27,7 +33,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters } from 'vuex';
 import CoachItem from '../../components/coaches/CoachItem.vue';
 import CoachFilter from '../../components/coaches/CoachFilter.vue';
 
@@ -38,6 +44,8 @@ export default {
   },
   data() {
     return {
+      isLoading: false,
+      error: null,
       activeFilters: {
         frontend: true,
         backend: true,
@@ -63,14 +71,25 @@ export default {
       });
     },
   },
-  created(){
-    this.loadCoaches()
+  created() {
+    this.loadCoaches();
   },
   methods: {
     setFilters(updatedFilters) {
       this.activeFilters = updatedFilters;
     },
-    ...mapActions(['loadCoaches'])
+    async loadCoaches() {
+      this.isLoading = true;
+      try {
+        await this.$store.dispatch('loadCoaches');
+      } catch (error) {
+        this.error = error.message || 'Something went wrong';
+      }
+      this.isLoading = false;
+    },
+    handleError(){
+      this.error = null;
+    }
   },
 };
 </script>
