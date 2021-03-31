@@ -51,14 +51,12 @@ export default {
         }
       );
 
-      console.log(response);
-
       const responseData = await response.json()
 
       if (!response.ok){
         throw new Error(responseData.message || 'Failed to save coach');
       }
-      
+
       context.commit('addCoach', {
         ...coachData,
         id: userId

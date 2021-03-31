@@ -7,10 +7,13 @@ export default {
   mutations: {
     addRequest(state, payload) {
       state.requests.push(payload);
+    },
+    setRequests(state, payload) {
+      state.requests = payload;
     }
   },
   actions: {
-    addRequest(context, data) {
+    async addRequest(context, data) {
       const newRequest = {
         id: new Date().toISOString(),
         userEmail: data.email,
@@ -18,7 +21,32 @@ export default {
         coachId: data.coachId
       };
 
+      await fetch(
+        'https://find-a-coach-69-default-rtdb.firebaseio.com/requests.json',
+        {
+          method: 'POST',
+          body: JSON.stringify(newRequest)
+        }
+      );
+
       context.commit('addRequest', newRequest);
+    },
+    async loadRequests(context) {
+      const response = await fetch(
+          'https://find-a-coach-69-default-rtdb.firebaseio.com/requests.json'
+        ),
+        responseData = await response.json();
+
+      if (!response.ok) {
+        throw new Error(responseData.message || 'Failed to fetch requests');
+      }
+
+      const requests = [];
+      for (const key in responseData) {
+        requests.push(responseData[key]);
+      }
+
+      context.commit('setRequests', requests);
     }
   },
   getters: {
