@@ -1,12 +1,14 @@
 <template>
   <form @submit.prevent="submitForm">
-    <div class="form-control" :class="{invalid : !email.isValid}">
+    <div class="form-control" :class="{ invalid: !email.isValid }">
       <label for="email">Your Email</label>
       <input type="email" id="email" v-model.trim="email.val" />
       <p v-if="!email.isValid">Plaese provide a valid email</p>
     </div>
-    <div class="form-control" :class="{invalid : !message.isValid}">
-      <label for="message" :class="{invalid : !message.isValid}">Message</label>
+    <div class="form-control" :class="{ invalid: !message.isValid }">
+      <label for="message" :class="{ invalid: !message.isValid }"
+        >Message</label
+      >
       <textarea id="message" rows="4" v-model="message.val"></textarea>
       <p v-if="!message.isValid">Message cannot be empty</p>
     </div>
@@ -32,31 +34,31 @@ export default {
     };
   },
   methods: {
-      validateForm(){
-          this.formIsValid = true;
-          if(this.email.val == '' || !this.email.val.includes('@')){
-            this.email.isValid = this.formIsValid = false;
-          }
-          if(this.message.val == ''){
-            this.message.isValid = this.formIsValid = false;
-          }
-      },
-      submitForm(){
-          this.validateForm();
-
-          if(!this.formIsValid){
-              return;
-          }
-
-          this.$store.dispatch('addRequest', {
-              email: this.email.val,
-              message: this.message.val,
-              coachId: this.$route.params.id
-          });
-
-          this.$router.replace('/coaches')
+    validateForm() {
+      this.formIsValid = true;
+      if (this.email.val == '' || !this.email.val.includes('@')) {
+        this.email.isValid = this.formIsValid = false;
       }
-  }
+      if (this.message.val == '') {
+        this.message.isValid = this.formIsValid = false;
+      }
+    },
+    submitForm() {
+      this.validateForm();
+
+      if (!this.formIsValid) {
+        return;
+      }
+
+      this.$store.dispatch('addRequest', {
+        email: this.email.val,
+        message: this.message.val,
+        coachId: this.$route.params.id,
+      });
+
+      this.$router.replace('/coaches');
+    },
+  },
 };
 </script>
 

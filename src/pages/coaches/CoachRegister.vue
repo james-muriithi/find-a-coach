@@ -11,10 +11,10 @@
 import CoachForm from '../../components/coaches/CoachForm.vue';
 
 export default {
-  data(){
+  data() {
     return {
-      error: null
-    }
+      error: null,
+    };
   },
   components: {
     CoachForm,
