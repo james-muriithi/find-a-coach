@@ -12,9 +12,9 @@ import store from './store';
 
 const CoachDetails = () => import('./pages/coaches/CoachDetails.vue');
 const ContactCoach = () => import('./pages/coaches/CoachRegister.vue');
-const CoachRegister = () => import('./pages/coaches/ContactCoach.vue');
-const RequestsReceived = () => import('./pages/coaches/RequestsReceived.vue');
-const UserAuth = () => import('./pages/coaches/UserAuth.vue');
+const CoachRegister = () => import('./pages/requests/ContactCoach.vue');
+const RequestsReceived = () => import('./pages/requests/RequestsReceived.vue');
+const UserAuth = () => import('./pages/auth/UserAuth.vue');
 
 const router = createRouter({
   history: createWebHistory(),
